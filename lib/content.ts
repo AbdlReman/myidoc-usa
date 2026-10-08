@@ -25,7 +25,15 @@ export const nav = [
       { label: "FAQs", href: "/faqs" },
     ],
   },
-  { label: "Services", href: "/services" },
+  {
+    label: "Services",
+    href: "/services",
+    children: [
+      { label: "Our Services", href: "/services" },
+      { label: "Cancer Support", href: "/services#cancer-support" },
+      { label: "Hematology", href: "/services#hematology" },
+    ],
+  },
   { label: "Doctors", href: "/doctors" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -68,19 +76,22 @@ export const trust: { icon: IconName; label: string }[] = [
   { icon: "heart", label: "USA-trained specialists" },
 ];
 
-export const services: { icon: IconName; title: string; text: string }[] = [
+export const services: { icon: IconName; id: string; title: string; text: string }[] = [
   {
     icon: "heart",
+    id: "cancer-support",
     title: "Cancer Care & Support",
     text: "Understand your diagnosis, pathology and treatment options, and prepare for decisions with your oncology team.",
   },
   {
     icon: "drop",
+    id: "hematology",
     title: "Hematology & Blood Disorders",
     text: "Expert consultations on anemia, clotting, platelet and other blood disorders, explained in plain language.",
   },
   {
     icon: "leaf",
+    id: "cancer-nutrition",
     title: "Cancer Nutrition",
     text: "Practical, evidence-based nutrition guidance before, during and after cancer treatment.",
   },

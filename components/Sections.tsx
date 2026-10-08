@@ -46,7 +46,7 @@ export function Services() {
         />
         <div className="grid-3">
           {services.map((s) => (
-            <article key={s.title} className="card">
+            <article key={s.title} id={s.id} className="card">
               <span className="icon-tile">
                 <Icon name={s.icon} size={28} />
               </span>

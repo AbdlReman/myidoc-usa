@@ -165,7 +165,7 @@ address { font-style: normal; }
 .hero__text { margin: 0 0 36px; font-size: 19px; line-height: 1.7; color: #e6ebf4; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero__media { flex: 0 1 470px; min-width: 0; position: relative; }
-.hero__photo { aspect-ratio: 4 / 5; border-radius: 20px; background: var(--lavender-100); }
+.hero__photo { aspect-ratio: 4 / 5; border-radius: 20px; background: #36454f; }
 .hero__badge {
   position: absolute; left: -28px; bottom: 36px; max-width: 300px;
   display: flex; align-items: center; gap: 14px; padding: 16px 20px;
@@ -259,6 +259,7 @@ address { font-style: normal; }
 .card {
   background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 34px 32px;
   transition: box-shadow .2s ease, transform .2s ease;
+  scroll-margin-top: 96px;
 }
 .card:hover { box-shadow: 0 16px 36px rgba(29,78,137,.10); transform: translateY(-2px); }
 
