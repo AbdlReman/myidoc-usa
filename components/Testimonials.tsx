@@ -22,7 +22,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="about" className="section section--blue">
+    <section id="testimonials" className="section section--blue">
       <div className="container">
         <div className="section-row">
           <div className="section-head section-head--light">

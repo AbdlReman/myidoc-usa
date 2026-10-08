@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Icon from "./Icon";
 import Logo from "./Logo";
 import { disclaimer, site } from "@/lib/content";
@@ -31,9 +32,9 @@ export default function Footer() {
           <div>
             <h3 className="footer__title">Departments</h3>
             <ul className="footer__links">
-              <li><a href="#services">Cancer</a></li>
-              <li><a href="#services">Hematology (Blood Disorders)</a></li>
-              <li><a href="#services">Cancer Nutrition</a></li>
+              <li><Link href="/services">Cancer</Link></li>
+              <li><Link href="/services">Hematology (Blood Disorders)</Link></li>
+              <li><Link href="/services">Cancer Nutrition</Link></li>
             </ul>
           </div>
 
@@ -41,8 +42,8 @@ export default function Footer() {
             <h3 className="footer__title">Quick Links</h3>
             <ul className="footer__links">
               <li><a href={site.bookingUrl}>Schedule a Consultation</a></li>
-              <li><a href="#doctors">Our Doctors</a></li>
-              <li><a href="#news">Blog</a></li>
+              <li><Link href="/doctors">Our Doctors</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
             </ul>
           </div>
 

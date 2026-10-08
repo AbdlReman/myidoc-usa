@@ -16,11 +16,11 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Doctors", href: "#doctors" },
-  { label: "Blog", href: "#news" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Doctors", href: "/doctors" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const hero = {
@@ -59,24 +59,21 @@ export const trust: { icon: IconName; label: string }[] = [
   { icon: "heart", label: "USA-trained specialists" },
 ];
 
-export const services: { icon: IconName; title: string; text: string; href: string }[] = [
+export const services: { icon: IconName; title: string; text: string }[] = [
   {
     icon: "heart",
     title: "Cancer Care & Support",
     text: "Understand your diagnosis, pathology and treatment options, and prepare for decisions with your oncology team.",
-    href: "#",
   },
   {
     icon: "drop",
     title: "Hematology & Blood Disorders",
     text: "Expert consultations on anemia, clotting, platelet and other blood disorders, explained in plain language.",
-    href: "#",
   },
   {
     icon: "leaf",
     title: "Cancer Nutrition",
     text: "Practical, evidence-based nutrition guidance before, during and after cancer treatment.",
-    href: "#",
   },
 ];
 
@@ -115,6 +112,45 @@ export const articles: { category: string; title: string; href: string; image: s
   { category: "Medical", title: "Breast Cancer: Insights from an Oncologist's Perspective", href: "#", image: null },
   { category: "Medical", title: "Top Telemedicine Clinics in the USA 2026", href: "#", image: null },
 ];
+
+export const about = {
+  eyebrow: "About MYiDocUSA",
+  title: "Specialist cancer & hematology support, built around your schedule",
+  intro:
+    "MYiDocUSA connects patients with board-certified, USA-trained oncology and hematology specialists for focused, one-on-one virtual consultations — for people who want more time, clearer answers, and support that goes beyond a rushed office visit.",
+  mission: {
+    title: "Our Mission",
+    text: "To make expert cancer, hematology and nutrition guidance accessible from anywhere in the USA, with the time and personal attention every patient deserves.",
+  },
+  values: [
+    {
+      icon: "clock" as IconName,
+      title: "Patient-first consultations",
+      text: "Every session is a dedicated, unhurried hour — not a rushed hallway consult.",
+    },
+    {
+      icon: "shield" as IconName,
+      title: "Board-certified expertise",
+      text: "Specialists trained and certified in the USA, with deep experience in oncology and hematology.",
+    },
+    {
+      icon: "heart" as IconName,
+      title: "Whole-person support",
+      text: "Guidance that covers diagnosis, treatment decisions and nutrition — not just prescriptions.",
+    },
+    {
+      icon: "video" as IconName,
+      title: "Secure & convenient",
+      text: "Private video visits from home, with your records reviewed ahead of time.",
+    },
+  ],
+};
+
+export const contact = {
+  eyebrow: "Get In Touch",
+  title: "We're here to help",
+  text: "Have a question about a consultation, your records, or how MYiDocUSA works? Reach out and our team will get back to you.",
+};
 
 export const disclaimer =
   "Our website content is not intended to replace the advice or treatment provided by your local healthcare provider. Continue to rely on your local healthcare provider for routine medical care, including physical examinations, diagnostic testing, and follow-up care. Seek immediate medical attention at your local emergency department if you experience a medical emergency. By using our services, you acknowledge that our doctors are not your primary care physicians. Our services are intended to supplement, not replace, the care provided by your local healthcare provider.";

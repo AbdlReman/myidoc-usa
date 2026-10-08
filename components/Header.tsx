@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Icon from "./Icon";
 import Logo from "./Logo";
 import { nav, site } from "@/lib/content";
@@ -28,15 +29,15 @@ export default function Header() {
 
       <header className="header">
         <div className="container header__inner">
-          <a href="#top" aria-label={`${site.name} home`}>
+          <Link href="/" aria-label={`${site.name} home`}>
             <Logo />
-          </a>
+          </Link>
 
           <nav className="header__nav" aria-label="Main">
             {nav.map((item) => (
-              <a key={item.href} href={item.href}>
+              <Link key={item.href} href={item.href}>
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -64,9 +65,9 @@ export default function Header() {
         <div id="mobile-menu" className={`mobile-menu ${open ? "is-open" : ""}`} hidden={!open}>
           <nav className="container mobile-menu__inner" aria-label="Mobile">
             {nav.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
                 {item.label}
-              </a>
+              </Link>
             ))}
             <a href="#" onClick={() => setOpen(false)}>
               Patient Login

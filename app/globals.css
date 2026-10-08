@@ -146,6 +146,32 @@ address { font-style: normal; }
 .hero__badge strong { display: block; font-size: 16px; }
 .hero__badge small { font-size: 14px; color: var(--muted); }
 
+/* ===== Page hero (sub-pages) ===== */
+.page-hero { background: var(--primary); color: #fff; padding: 52px 0 48px; }
+.page-hero__eyebrow { color: var(--lavender-100); margin-bottom: 10px; }
+.page-hero__title { font-family: var(--font-heading); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(30px, 3.6vw, 44px); margin: 0 0 14px; }
+.page-hero__crumbs { display: flex; gap: 10px; font-size: 14px; color: var(--lavender-100); }
+.page-hero__crumbs a { color: var(--lavender-100); text-decoration: none; }
+.page-hero__crumbs a:hover { color: #fff; text-decoration: underline; }
+
+/* ===== About ===== */
+.about-media { position: relative; flex: 1 1 420px; min-width: 0; max-width: 480px; }
+.about-media__photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; }
+.about-media__shape-1 { position: absolute; z-index: 0; top: -28px; right: -28px; width: 88%; height: 92%; border-radius: 28px; opacity: .7; }
+.about-media__shape-2 { position: absolute; z-index: 2; left: -36px; bottom: -28px; width: 120px; height: auto; }
+.about-media__shape-3 { position: absolute; z-index: 2; right: -18px; top: -18px; width: 68px; height: auto; }
+.values { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+
+/* ===== Contact ===== */
+.contact-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; }
+.contact-list { display: flex; flex-direction: column; gap: 22px; margin: 28px 0 0; }
+.contact-list li { display: flex; gap: 14px; align-items: flex-start; }
+.contact-list svg { color: var(--primary); flex: none; margin-top: 2px; }
+.contact-list strong { display: block; font-size: 15px; }
+.contact-list span, .contact-list a { color: var(--text-2); }
+.contact-banner { background: var(--primary); color: #fff; border-radius: var(--radius); padding: 40px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.contact-banner p { margin: 0; color: #e6ebf4; }
+
 /* ===== Shared pieces ===== */
 .photo { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--lavender-100); }
 .photo__placeholder { color: var(--primary); font-weight: 700; text-align: center; padding: 24px; }

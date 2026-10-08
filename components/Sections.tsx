@@ -1,6 +1,7 @@
+import Link from "next/link";
 import Icon from "./Icon";
 import Photo from "./Photo";
-import { articles, doctor, services, site, steps, trust } from "@/lib/content";
+import { doctor, services, site, steps, trust } from "@/lib/content";
 
 function SectionHead({ eyebrow, title, text, center = false, light = false }: {
   eyebrow: string;
@@ -51,9 +52,9 @@ export function Services() {
               </span>
               <h3 className="h3">{s.title}</h3>
               <p className="muted">{s.text}</p>
-              <a href={s.href} className="link-arrow">
+              <Link href="/services" className="link-arrow">
                 Learn more →
-              </a>
+              </Link>
             </article>
           ))}
         </div>
@@ -134,41 +135,6 @@ export function Doctor() {
             </div>
           </div>
         </article>
-      </div>
-    </section>
-  );
-}
-
-export function News() {
-  return (
-    <section id="news" className="section">
-      <div className="container">
-        <div className="section-row">
-          <SectionHead eyebrow="News & Insights" title="Our Latest News" />
-          <a href="#" className="link-arrow">
-            View all articles →
-          </a>
-        </div>
-        <div className="grid-3">
-          {articles.map((a) => (
-            <article key={a.title} className="article">
-              <Photo
-                src={a.image}
-                alt={a.title}
-                placeholder="[Article image]"
-                className="article__img"
-                sizes="(max-width: 900px) 100vw, 380px"
-              />
-              <div className="article__body">
-                <span className="tag">{a.category}</span>
-                <h3 className="h4">{a.title}</h3>
-                <a href={a.href} className="link-arrow">
-                  Read more →
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
   );
