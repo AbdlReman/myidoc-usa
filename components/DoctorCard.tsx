@@ -15,7 +15,7 @@ export default function DoctorCard({ doctor }: { doctor: Doctor }) {
     <article className="doctor">
       <Link href={`/doctors/${doctor.slug}`}>
         <Photo
-          src={doctor.image}
+          src={doctor.image ?? "/images/doctor-raza-naqvi.png"}
           alt={doctor.name}
           placeholder="[Doctor headshot]"
           className="doctor__photo"
