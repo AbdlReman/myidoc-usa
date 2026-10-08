@@ -16,7 +16,15 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: "About", href: "/about" },
+  {
+    label: "About",
+    href: "/about",
+    children: [
+      { label: "About Us", href: "/about" },
+      { label: "Our Mission", href: "/about/mission" },
+      { label: "FAQs", href: "/faqs" },
+    ],
+  },
   { label: "Services", href: "/services" },
   { label: "Doctors", href: "/doctors" },
   { label: "Blog", href: "/blog" },
@@ -50,7 +58,8 @@ export type IconName =
   | "menu"
   | "close"
   | "arrowLeft"
-  | "arrowRight";
+  | "arrowRight"
+  | "chevronDown";
 
 export const trust: { icon: IconName; label: string }[] = [
   { icon: "clock", label: "Dedicated 1-hour sessions" },
@@ -145,6 +154,33 @@ export const about = {
     },
   ],
 };
+
+export const faqs = [
+  {
+    q: "How does an online consultation with MYiDocUSA work?",
+    a: "You book a time online, complete a short intake form and securely share any relevant records. At your scheduled time, you'll meet your specialist for a dedicated, one-hour video visit.",
+  },
+  {
+    q: "Who are the specialists on MYiDocUSA?",
+    a: "Our consultations are led by board-certified, USA-trained oncology and hematology specialists with experience across diagnosis, treatment planning and survivorship care.",
+  },
+  {
+    q: "What can I expect to cover in a session?",
+    a: "Sessions typically cover your diagnosis and pathology, treatment options, second opinions, blood disorder questions, and cancer nutrition — whatever is most relevant to you, in plain language.",
+  },
+  {
+    q: "Is this a replacement for my local doctor?",
+    a: "No. MYiDocUSA is designed to supplement, not replace, the care provided by your local healthcare provider. Continue to rely on your local provider for routine care, and seek emergency care immediately if needed.",
+  },
+  {
+    q: "Is my information kept private and secure?",
+    a: "Yes. Visits take place over secure video, and any records you share are used only to prepare for and support your consultation.",
+  },
+  {
+    q: "What do I do in a medical emergency?",
+    a: "MYiDocUSA consultations are not for emergencies. If you are experiencing a medical emergency, call 911 or go to your nearest emergency department immediately.",
+  },
+] as const;
 
 export const contact = {
   eyebrow: "Get In Touch",

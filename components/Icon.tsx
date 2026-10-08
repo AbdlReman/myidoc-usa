@@ -63,6 +63,7 @@ const paths: Record<IconName, React.ReactNode> = {
   close: <path d="M6 6l12 12M18 6L6 18" />,
   arrowLeft: <path d="M15 6l-6 6 6 6" />,
   arrowRight: <path d="M9 6l6 6-6 6" />,
+  chevronDown: <path d="M6 9l6 6 6-6" />,
 };
 
 type Props = { name: IconName; size?: number; strokeWidth?: number; className?: string };

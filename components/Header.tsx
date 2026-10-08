@@ -8,6 +8,7 @@ import { nav, site } from "@/lib/content";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [mobileGroupOpen, setMobileGroupOpen] = useState<string | null>(null);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -34,11 +35,27 @@ export default function Header() {
           </Link>
 
           <nav className="header__nav" aria-label="Main">
-            {nav.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
+            {nav.map((item) =>
+              "children" in item && item.children ? (
+                <div key={item.href} className="nav-dropdown">
+                  <Link href={item.href} className="nav-dropdown__trigger">
+                    {item.label}
+                    <Icon name="chevronDown" size={14} strokeWidth={2.4} />
+                  </Link>
+                  <div className="nav-dropdown__menu">
+                    {item.children.map((child) => (
+                      <Link key={child.href} href={child.href}>
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link key={item.href} href={item.href}>
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
 
           <div className="header__actions">
@@ -64,11 +81,34 @@ export default function Header() {
 
         <div id="mobile-menu" className={`mobile-menu ${open ? "is-open" : ""}`} hidden={!open}>
           <nav className="container mobile-menu__inner" aria-label="Mobile">
-            {nav.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
-                {item.label}
-              </Link>
-            ))}
+            {nav.map((item) =>
+              "children" in item && item.children ? (
+                <div key={item.href} className="mobile-menu__group">
+                  <button
+                    type="button"
+                    className="mobile-menu__group-toggle"
+                    aria-expanded={mobileGroupOpen === item.label}
+                    onClick={() => setMobileGroupOpen((v) => (v === item.label ? null : item.label))}
+                  >
+                    {item.label}
+                    <Icon name="chevronDown" size={16} strokeWidth={2.4} />
+                  </button>
+                  {mobileGroupOpen === item.label && (
+                    <div className="mobile-menu__submenu">
+                      {item.children.map((child) => (
+                        <Link key={child.href} href={child.href} onClick={() => setOpen(false)}>
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                  {item.label}
+                </Link>
+              )
+            )}
             <a href="#" onClick={() => setOpen(false)}>
               Patient Login
             </a>

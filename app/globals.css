@@ -99,9 +99,28 @@ address { font-style: normal; }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 14px; padding-bottom: 14px; }
 .header__inner > a:first-child { display: flex; align-items: center; }
 .header a { text-decoration: none; }
-.header__nav { display: flex; gap: 32px; font-weight: 600; }
+.header__nav { display: flex; gap: 32px; font-weight: 600; align-items: center; }
 .header__nav a { color: var(--text); }
 .header__nav a:hover { color: var(--primary); }
+
+.nav-dropdown { position: relative; }
+.nav-dropdown__trigger { display: inline-flex; align-items: center; gap: 5px; }
+.nav-dropdown__trigger svg { transition: transform .15s ease; }
+.nav-dropdown:hover .nav-dropdown__trigger svg,
+.nav-dropdown:focus-within .nav-dropdown__trigger svg { transform: rotate(180deg); }
+.nav-dropdown__menu {
+  position: absolute; top: 100%; left: 0; margin-top: 16px; min-width: 200px;
+  display: flex; flex-direction: column; gap: 2px;
+  background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 8px;
+  box-shadow: 0 18px 40px rgba(15,42,74,.14);
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  z-index: 60;
+}
+.nav-dropdown:hover .nav-dropdown__menu,
+.nav-dropdown:focus-within .nav-dropdown__menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav-dropdown__menu a { padding: 10px 12px; border-radius: 8px; font-weight: 600; }
+.nav-dropdown__menu a:hover { background: var(--lavender-50); color: var(--primary); }
 .header__actions { display: flex; align-items: center; gap: 20px; font-weight: 600; }
 .header__login { color: var(--primary); }
 .header__toggle {
@@ -112,6 +131,15 @@ address { font-style: normal; }
 .mobile-menu__inner { display: flex; flex-direction: column; gap: 4px; padding-top: 12px; padding-bottom: 20px; }
 .mobile-menu__inner a:not(.btn) { padding: 12px 4px; color: var(--text); font-weight: 600; border-bottom: 1px solid var(--border); }
 .mobile-menu__inner .btn { margin-top: 14px; }
+.mobile-menu__group { display: flex; flex-direction: column; }
+.mobile-menu__group-toggle {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  padding: 12px 4px; background: none; border: 0; border-bottom: 1px solid var(--border);
+  font: inherit; font-size: 1em; font-weight: 600; color: var(--text); cursor: pointer; text-align: left;
+}
+.mobile-menu__group-toggle svg { transition: transform .15s ease; }
+.mobile-menu__group-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.mobile-menu__submenu { display: flex; flex-direction: column; padding-left: 16px; }
 
 .logo { display: inline-flex; align-items: center; }
 .logo__img { display: block; height: 48px; width: auto; }
@@ -161,6 +189,21 @@ address { font-style: normal; }
 .about-media__shape-2 { position: absolute; z-index: 2; left: -36px; bottom: -28px; width: 120px; height: auto; }
 .about-media__shape-3 { position: absolute; z-index: 2; right: -18px; top: -18px; width: 68px; height: auto; }
 .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+
+/* ===== FAQs ===== */
+.faq-list { display: flex; flex-direction: column; gap: 14px; }
+.faq-item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 26px; }
+.faq-item summary {
+  cursor: pointer; font-family: var(--font-heading); font-weight: 700; font-size: 17px; color: var(--navy);
+  list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+"; flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--lavender-50);
+  color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700;
+}
+.faq-item[open] summary::after { content: "–"; }
+.faq-item p { margin: 14px 0 0; color: var(--text-2); }
 
 /* ===== Contact ===== */
 .contact-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; }
