@@ -38,7 +38,7 @@ export const hero = {
   badgeTitle: "Board-Certified",
   badgeText: "Oncology & Hematology",
   // Put your photo in /public/images and set the path, e.g. "/images/hero-doctor.jpg"
-  image: null as string | null,
+  image: "/images/doctor-raza-naqvi.png" as string | null,
 };
 
 export type IconName =
@@ -98,7 +98,7 @@ export const doctor = {
   bio: "[Short professional bio — board certifications, training, years of experience, and areas of special interest in cancer and blood disorders.]",
   tags: ["[Board certification]", "[Fellowship]", "[Hospital affiliation]"],
   bookLabel: "Book with Dr. Naqvi",
-  image: null as string | null,
+  image: "/images/doctor-raza-naqvi.png" as string | null,
 };
 
 export const testimonials = [

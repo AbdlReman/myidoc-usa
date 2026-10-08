@@ -28,10 +28,11 @@ export default function Hero() {
         <div className="hero__media">
           <Photo
             src={hero.image}
-            alt="Your MYiDocUSA cancer specialist"
+            alt="Dr. Muhammad Raza Naqvi, MYiDocUSA cancer specialist"
             placeholder="[Professional portrait — doctor in white coat, soft background]"
             className="hero__photo"
             priority
+            fit="contain"
             sizes="(max-width: 900px) 100vw, 470px"
           />
           <div className="hero__badge">

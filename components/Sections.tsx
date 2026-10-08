@@ -104,6 +104,7 @@ export function Doctor() {
             alt={doctor.name}
             placeholder="[Doctor headshot]"
             className="doctor__photo"
+            fit="contain"
             sizes="(max-width: 900px) 100vw, 400px"
           />
           <div className="doctor__body">
