@@ -148,3 +148,67 @@ export async function getService(slug: string): Promise<Service | null> {
     return null;
   }
 }
+
+export type Doctor = {
+  name: string;
+  slug: string;
+  specialization: string | null;
+  image: string | null;
+  doctorCities: string[];
+  doctorStates: string[];
+  generalInfo: Document | null;
+  additionalDetail: Document | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  keywords: string[];
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function toDoctor(entry: any): Doctor {
+  const f = entry.fields;
+  return {
+    name: f.name,
+    slug: f.slug,
+    specialization: f.specialization ?? null,
+    image: assetUrl(f.image),
+    doctorCities: f.doctorCities ?? [],
+    doctorStates: f.doctorStates ?? [],
+    generalInfo: f.generalInfo ?? null,
+    additionalDetail: f.additionalDetail ?? null,
+    metaTitle: f.metaTitle ?? null,
+    metaDescription: f.metaDescription ?? null,
+    keywords: f.keywords ?? [],
+  };
+}
+
+export async function getDoctors(): Promise<Doctor[]> {
+  const client = getClient();
+  if (!client) return [];
+  try {
+    const entries = await client.getEntries({
+      content_type: "doctor",
+      order: ["fields.name"],
+    });
+    return entries.items.map(toDoctor);
+  } catch (err) {
+    console.error("Failed to fetch doctors from Contentful:", err);
+    return [];
+  }
+}
+
+export async function getDoctor(slug: string): Promise<Doctor | null> {
+  const client = getClient();
+  if (!client) return null;
+  try {
+    const entries = await client.getEntries({
+      content_type: "doctor",
+      "fields.slug": slug,
+      limit: 1,
+    });
+    const entry = entries.items[0];
+    return entry ? toDoctor(entry) : null;
+  } catch (err) {
+    console.error(`Failed to fetch doctor "${slug}" from Contentful:`, err);
+    return null;
+  }
+}

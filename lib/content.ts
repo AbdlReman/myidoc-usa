@@ -99,15 +99,6 @@ export const steps = [
   { title: "Meet your specialist", text: "An unhurried hour by secure video, focused entirely on you." },
 ];
 
-export const doctor = {
-  name: "Dr. Muhammad Raza Naqvi",
-  specialty: "Oncology · Hematology",
-  bio: "[Short professional bio — board certifications, training, years of experience, and areas of special interest in cancer and blood disorders.]",
-  tags: ["[Board certification]", "[Fellowship]", "[Hospital affiliation]"],
-  bookLabel: "Book with Dr. Naqvi",
-  image: "/images/doctor-raza-naqvi.png" as string | null,
-};
-
 export const testimonials = [
   {
     quote:

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Icon from "./Icon";
 import Photo from "./Photo";
-import { doctor, services, site, steps, trust } from "@/lib/content";
+import { services, site, steps, trust } from "@/lib/content";
 
 export function SectionHead({ eyebrow, title, text, center = false, light = false }: {
   eyebrow: string;
@@ -99,50 +99,3 @@ export function HowItWorks() {
   );
 }
 
-export function Doctor() {
-  return (
-    <section id="doctors" className="section section--tint">
-      <div className="container">
-        <SectionHead center eyebrow="Our Specialists" title="Meet Our Expert Doctors" />
-        <article className="doctor">
-          <Photo
-            src={doctor.image}
-            alt={doctor.name}
-            placeholder="[Doctor headshot]"
-            className="doctor__photo"
-            fit="contain"
-            sizes="(max-width: 900px) 100vw, 400px"
-          />
-          <div className="doctor__body">
-            <div className="doctor__spec">{doctor.specialty}</div>
-            <h3 className="doctor__name">{doctor.name}</h3>
-            <p className="doctor__bio">{doctor.bio}</p>
-            <ul className="tags">
-              {doctor.tags.map((t) => (
-                <li key={t} className="tag">
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <div className="doctor__actions">
-              <a href={site.bookingUrl} className="btn btn--gold">
-                {doctor.bookLabel}
-              </a>
-              <div className="socials">
-                <a href={site.social.facebook} aria-label="Facebook" className="social">
-                  <Icon name="facebook" size={15} strokeWidth={2.2} />
-                </a>
-                <a href={site.social.linkedin} aria-label="LinkedIn" className="social">
-                  <Icon name="linkedin" size={15} strokeWidth={2.2} />
-                </a>
-                <a href={site.social.youtube} aria-label="YouTube" className="social">
-                  <Icon name="youtube" size={15} strokeWidth={2.2} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-  );
-}

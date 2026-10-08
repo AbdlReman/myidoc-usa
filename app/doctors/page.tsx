@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
-import { Doctor } from "@/components/Sections";
+import DoctorSection from "@/components/DoctorSection";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Our Doctors | MYiDocUSA",
@@ -15,7 +17,7 @@ export default function DoctorsPage() {
       <Header />
       <main id="main">
         <PageHero eyebrow="Our Specialists" title="Our Doctors" crumb="Doctors" />
-        <Doctor />
+        <DoctorSection tint={false} />
       </main>
       <Footer />
     </>

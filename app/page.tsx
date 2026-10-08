@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import { HowItWorks, TrustStrip } from "@/components/Sections";
+import DoctorSection from "@/components/DoctorSection";
 import Testimonials from "@/components/Testimonials";
 import LatestBlog from "@/components/LatestBlog";
 import Newsletter from "@/components/Newsletter";
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <TrustStrip />
         <HowItWorks />
+        <DoctorSection limit={1} hideIfEmpty />
         <Testimonials />
         <LatestBlog />
         <Newsletter />
