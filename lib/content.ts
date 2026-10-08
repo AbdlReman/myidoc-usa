@@ -127,12 +127,6 @@ export const testimonials = [
   },
 ];
 
-export const articles: { category: string; title: string; href: string; image: string | null }[] = [
-  { category: "Cancer Prevention", title: "Prevent Colorectal Cancer: A Complete Guide to Early Prevention", href: "#", image: null },
-  { category: "Medical", title: "Breast Cancer: Insights from an Oncologist's Perspective", href: "#", image: null },
-  { category: "Medical", title: "Top Telemedicine Clinics in the USA 2026", href: "#", image: null },
-];
-
 export const about = {
   eyebrow: "About MYiDocUSA",
   title: "Specialist cancer & hematology support, built around your schedule",
