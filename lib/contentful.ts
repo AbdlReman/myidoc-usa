@@ -34,6 +34,24 @@ function assetUrl(asset?: Asset): string | null {
   return url.startsWith("//") ? `https:${url}` : url;
 }
 
+type RichTextNode = { nodeType: string; value?: string; content?: RichTextNode[] };
+
+function richTextToPlainText(node: RichTextNode): string {
+  if (node.nodeType === "text") return node.value ?? "";
+  if (!node.content) return "";
+  return node.content.map(richTextToPlainText).join(" ");
+}
+
+/** Plain-text excerpt of a rich text document, cut at a word boundary. */
+export function excerpt(doc: Document | null, limit = 160): string {
+  if (!doc) return "";
+  const text = richTextToPlainText(doc as unknown as RichTextNode).replace(/\s+/g, " ").trim();
+  if (text.length <= limit) return text;
+  const cut = text.slice(0, limit);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${cut.slice(0, lastSpace > 0 ? lastSpace : limit)}...`;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function toBlogPost(entry: any): BlogPost {
   const f = entry.fields;

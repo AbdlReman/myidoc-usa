@@ -1,28 +1,32 @@
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Link from "next/link";
 import Icon from "./Icon";
 import Photo from "./Photo";
 import { site } from "@/lib/content";
-import type { Doctor } from "@/lib/contentful";
+import { excerpt, type Doctor } from "@/lib/contentful";
 
 function titleCase(value: string) {
   return value.replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 export default function DoctorCard({ doctor }: { doctor: Doctor }) {
+  const bio = excerpt(doctor.generalInfo, 160);
+
   return (
     <article className="doctor">
-      <Photo
-        src={doctor.image}
-        alt={doctor.name}
-        placeholder="[Doctor headshot]"
-        className="doctor__photo"
-        fit="contain"
-        sizes="(max-width: 900px) 100vw, 400px"
-      />
+      <Link href={`/doctors/${doctor.slug}`}>
+        <Photo
+          src={doctor.image}
+          alt={doctor.name}
+          placeholder="[Doctor headshot]"
+          className="doctor__photo"
+          fit="contain"
+          sizes="(max-width: 900px) 100vw, 400px"
+        />
+      </Link>
       <div className="doctor__body">
         {doctor.specialization && <div className="doctor__spec">{doctor.specialization}</div>}
         <h3 className="doctor__name">{doctor.name}</h3>
-        {doctor.generalInfo && <div className="doctor__bio">{documentToReactComponents(doctor.generalInfo)}</div>}
+        {bio && <p className="doctor__bio">{bio}</p>}
         {doctor.doctorStates.length > 0 && (
           <ul className="tags">
             {doctor.doctorStates.map((stateName) => (
@@ -33,9 +37,9 @@ export default function DoctorCard({ doctor }: { doctor: Doctor }) {
           </ul>
         )}
         <div className="doctor__actions">
-          <a href={site.bookingUrl} className="btn btn--gold">
-            Book with {doctor.name}
-          </a>
+          <Link href={`/doctors/${doctor.slug}`} className="link-arrow">
+            View Full Profile →
+          </Link>
           <div className="socials">
             <a href={site.social.facebook} aria-label="Facebook" className="social">
               <Icon name="facebook" size={15} strokeWidth={2.2} />
