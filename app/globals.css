@@ -97,6 +97,7 @@ address { font-style: normal; }
 
 .header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); backdrop-filter: saturate(1.2) blur(8px); border-bottom: 1px solid var(--border); }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 14px; padding-bottom: 14px; }
+.header__inner > a:first-child { display: flex; align-items: center; }
 .header a { text-decoration: none; }
 .header__nav { display: flex; gap: 32px; font-weight: 600; }
 .header__nav a { color: var(--text); }
@@ -112,11 +113,9 @@ address { font-style: normal; }
 .mobile-menu__inner a:not(.btn) { padding: 12px 4px; color: var(--text); font-weight: 600; border-bottom: 1px solid var(--border); }
 .mobile-menu__inner .btn { margin-top: 14px; }
 
-.logo { display: inline-flex; align-items: center; gap: 8px; color: var(--navy); }
-.logo__text { font-family: var(--font-heading); font-weight: 800; font-size: 23px; letter-spacing: -0.02em; }
-.logo__accent { color: var(--primary); }
-.logo--light { color: #fff; }
-.logo--light .logo__accent { color: var(--lavender); }
+.logo { display: inline-flex; align-items: center; }
+.logo__img { display: block; height: 48px; width: auto; }
+.logo--light { background: #fff; padding: 2px 14px; border-radius: 10px; }
 
 /* ===== Hero ===== */
 .hero { position: relative; overflow: hidden; background: var(--primary); color: #fff; }
