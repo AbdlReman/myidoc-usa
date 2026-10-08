@@ -76,21 +76,26 @@ export const trust: { icon: IconName; label: string }[] = [
   { icon: "heart", label: "USA-trained specialists" },
 ];
 
-export const services: { title: string; text: string; href: string; image: string | null }[] = [
+export const services: { icon: IconName; title: string; text: string; href: string }[] = [
   {
+    icon: "heart",
     title: "Cancer Support & Care",
     text: "Understand your diagnosis, pathology and treatment options, and prepare for decisions with your oncology team.",
     href: "/cancer",
-    // Put your photo in /public/images and set the path, e.g. "/images/cancer-care.jpg"
-    image: null,
   },
   {
+    icon: "drop",
     title: "Hematology & Blood Disorders",
     text: "Expert consultations on anemia, clotting, platelet and other blood disorders, explained in plain language.",
     href: "/hematology",
-    // Put your photo in /public/images and set the path, e.g. "/images/hematology.jpg"
-    image: null,
   },
+  // Not launched yet — uncomment once the Cancer Nutrition service is ready.
+  // {
+  //   icon: "leaf",
+  //   title: "Cancer Nutrition",
+  //   text: "Practical, evidence-based nutrition guidance before, during and after cancer treatment.",
+  //   href: "/services",
+  // },
 ];
 
 export const steps = [

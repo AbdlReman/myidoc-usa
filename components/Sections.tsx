@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Icon from "./Icon";
-import Photo from "./Photo";
 import { services, site, steps, trust } from "@/lib/content";
 
 export function SectionHead({ eyebrow, title, text, center = false, light = false }: {
@@ -46,21 +45,15 @@ export function Services() {
         />
         <div className="grid-3">
           {services.map((s) => (
-            <article key={s.title} className="article">
-              <Photo
-                src={s.image}
-                alt={s.title}
-                placeholder="[Category image]"
-                className="article__img"
-                sizes="(max-width: 900px) 100vw, 380px"
-              />
-              <div className="article__body">
-                <h3 className="h4">{s.title}</h3>
-                <p className="muted">{s.text}</p>
-                <Link href={s.href} className="link-arrow">
-                  Read More →
-                </Link>
-              </div>
+            <article key={s.title} className="card">
+              <span className="icon-tile">
+                <Icon name={s.icon} size={28} />
+              </span>
+              <h3 className="h3">{s.title}</h3>
+              <p className="muted">{s.text}</p>
+              <Link href={s.href} className="link-arrow">
+                Read More →
+              </Link>
             </article>
           ))}
         </div>
