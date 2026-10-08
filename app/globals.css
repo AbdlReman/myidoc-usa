@@ -143,7 +143,6 @@ address { font-style: normal; }
 
 .logo { display: inline-flex; align-items: center; }
 .logo__img { display: block; height: 48px; width: auto; }
-.logo--light { background: #fff; padding: 2px 14px; border-radius: 10px; }
 
 /* ===== Hero ===== */
 .hero { position: relative; overflow: hidden; background: var(--primary); color: #fff; }
