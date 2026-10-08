@@ -32,9 +32,8 @@ export default function Footer() {
           <div>
             <h3 className="footer__title">Departments</h3>
             <ul className="footer__links">
-              <li><Link href="/services">Cancer</Link></li>
-              <li><Link href="/services">Hematology (Blood Disorders)</Link></li>
-              <li><Link href="/services">Cancer Nutrition</Link></li>
+              <li><Link href="/cancer">Cancer</Link></li>
+              <li><Link href="/hematology">Hematology (Blood Disorders)</Link></li>
             </ul>
           </div>
 
@@ -74,8 +73,8 @@ export default function Footer() {
           <span>© {new Date().getFullYear()} MYiDocUSA, LLC. All rights reserved.</span>
           <strong>If this is a medical emergency, please call 911.</strong>
           <span className="footer__legal">
-            <a href={site.termsUrl}>Terms &amp; Conditions</a>
-            <a href={site.privacyUrl}>Privacy Policy</a>
+            <Link href={site.termsUrl}>Terms &amp; Conditions</Link>
+            <Link href={site.privacyUrl}>Privacy Policy</Link>
           </span>
         </div>
       </div>

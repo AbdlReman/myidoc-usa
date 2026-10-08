@@ -5,8 +5,8 @@ export const site = {
   bookingUrl: "https://myidocusa.janeapp.com/",
   email: "admin@myidocusa.com",
   address: ["501 S Cherry St, Suite 1100", "Denver, CO 80246"],
-  termsUrl: "https://www.myidocusa.com/terms-conditions/",
-  privacyUrl: "https://www.myidocusa.com/legal/privacy-policy/",
+  termsUrl: "/terms-conditions",
+  privacyUrl: "/legal/privacy-policy",
   social: {
     facebook: "https://www.facebook.com/MYiDocUSA/",
     youtube: "https://www.youtube.com/@MYiDocUSA/",
