@@ -23,6 +23,8 @@ function getClient() {
     space,
     accessToken,
     environment: process.env.CONTENTFUL_ENVIRONMENT || "master",
+    timeout: 8000,
+    retryLimit: 1,
   });
 }
 
@@ -78,6 +80,71 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     return entry ? toBlogPost(entry) : null;
   } catch (err) {
     console.error(`Failed to fetch blog post "${slug}" from Contentful:`, err);
+    return null;
+  }
+}
+
+export type Service = {
+  name: string;
+  slug: string;
+  category: string | null;
+  smallImage: string | null;
+  bannerImage: string | null;
+  gallery: string[];
+  shortDescription: string | null;
+  description: Document | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  tags: string[];
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function toService(entry: any): Service {
+  const f = entry.fields;
+  return {
+    name: f.name,
+    slug: f.slug,
+    category: f.category ?? null,
+    smallImage: assetUrl(f.smallImage),
+    bannerImage: assetUrl(f.bannerImage),
+    gallery: ((f.gallery ?? []) as Asset[]).map(assetUrl).filter((url): url is string => !!url),
+    shortDescription: f.shortDescription ?? null,
+    description: f.description ?? null,
+    metaTitle: f.metaTitle ?? null,
+    metaDescription: f.metaDescription ?? null,
+    tags: f.tags ?? [],
+  };
+}
+
+export async function getServices(category?: string): Promise<Service[]> {
+  const client = getClient();
+  if (!client) return [];
+  try {
+    const entries = await client.getEntries({
+      content_type: "service",
+      order: ["fields.name"],
+      ...(category ? { "fields.category": category } : {}),
+    });
+    return entries.items.map(toService);
+  } catch (err) {
+    console.error("Failed to fetch services from Contentful:", err);
+    return [];
+  }
+}
+
+export async function getService(slug: string): Promise<Service | null> {
+  const client = getClient();
+  if (!client) return null;
+  try {
+    const entries = await client.getEntries({
+      content_type: "service",
+      "fields.slug": slug,
+      limit: 1,
+    });
+    const entry = entries.items[0];
+    return entry ? toService(entry) : null;
+  } catch (err) {
+    console.error(`Failed to fetch service "${slug}" from Contentful:`, err);
     return null;
   }
 }

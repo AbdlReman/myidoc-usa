@@ -259,7 +259,6 @@ address { font-style: normal; }
 .card {
   background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 34px 32px;
   transition: box-shadow .2s ease, transform .2s ease;
-  scroll-margin-top: 96px;
 }
 .card:hover { box-shadow: 0 16px 36px rgba(29,78,137,.10); transform: translateY(-2px); }
 
@@ -338,6 +337,7 @@ address { font-style: normal; }
 }
 .post__content hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
 .post__content img { border-radius: var(--radius); margin: 8px 0 24px; }
+.post__gallery { margin-top: 12px; }
 .post__tags { margin-top: 36px; }
 
 /* Newsletter */

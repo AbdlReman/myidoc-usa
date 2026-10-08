@@ -41,20 +41,26 @@ export function Services() {
         <SectionHead
           center
           eyebrow="Our Health Services"
-          title="Comprehensive Cancer, Hematology & Nutrition Support"
+          title="Comprehensive Cancer & Hematology Support"
           text="Specialist guidance for patients at every stage — from initial diagnosis through survivorship."
         />
         <div className="grid-3">
           {services.map((s) => (
-            <article key={s.title} id={s.id} className="card">
-              <span className="icon-tile">
-                <Icon name={s.icon} size={28} />
-              </span>
-              <h3 className="h3">{s.title}</h3>
-              <p className="muted">{s.text}</p>
-              <Link href="/services" className="link-arrow">
-                Learn more →
-              </Link>
+            <article key={s.title} className="article">
+              <Photo
+                src={s.image}
+                alt={s.title}
+                placeholder="[Category image]"
+                className="article__img"
+                sizes="(max-width: 900px) 100vw, 380px"
+              />
+              <div className="article__body">
+                <h3 className="h4">{s.title}</h3>
+                <p className="muted">{s.text}</p>
+                <Link href={s.href} className="link-arrow">
+                  Read More →
+                </Link>
+              </div>
             </article>
           ))}
         </div>
