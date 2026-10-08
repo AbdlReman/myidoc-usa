@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   description: "News and insights on cancer prevention, oncology and telemedicine from the MYiDocUSA team.",
 };
 
+const TITLE_LIMIT = 53;
+
+function truncateTitle(title: string) {
+  return title.length > TITLE_LIMIT ? `${title.slice(0, TITLE_LIMIT)}...` : title;
+}
+
 export default async function BlogPage() {
   const posts = await getBlogPosts();
 
@@ -28,7 +34,7 @@ export default async function BlogPage() {
                 {posts.map((post) => {
                   const { title, slug, thumbnail, coverImage, category } = post;
                   return (
-                    <article key={slug} className="article">
+                    <article key={slug} className="article article--flat">
                       <Link href={`/blog/${slug}`}>
                         <Photo
                           src={thumbnail ?? coverImage}
@@ -40,7 +46,7 @@ export default async function BlogPage() {
                       </Link>
                       <div className="article__body">
                         {category && <span className="tag">{category}</span>}
-                        <h2 className="h4">{title}</h2>
+                        <h2 className="h4">{truncateTitle(title)}</h2>
                         <Link href={`/blog/${slug}`} className="link-arrow">
                           Read more →
                         </Link>

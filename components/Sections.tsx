@@ -3,7 +3,7 @@ import Icon from "./Icon";
 import Photo from "./Photo";
 import { doctor, services, site, steps, trust } from "@/lib/content";
 
-function SectionHead({ eyebrow, title, text, center = false, light = false }: {
+export function SectionHead({ eyebrow, title, text, center = false, light = false }: {
   eyebrow: string;
   title: string;
   text?: string;

@@ -305,6 +305,7 @@ address { font-style: normal; }
 /* News */
 .article { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fff; transition: box-shadow .2s ease; }
 .article:hover { box-shadow: 0 16px 36px rgba(29,78,137,.10); }
+.article--flat { border-radius: 0; }
 .article__img { height: 220px; }
 .article__body { padding: 24px 26px 28px; }
 .article__body .h4 { margin: 14px 0; }
