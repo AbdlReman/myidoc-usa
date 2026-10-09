@@ -64,11 +64,41 @@ const paths: Record<IconName, React.ReactNode> = {
   arrowLeft: <path d="M15 6l-6 6 6 6" />,
   arrowRight: <path d="M9 6l6 6-6 6" />,
   chevronDown: <path d="M6 9l6 6 6-6" />,
+  users: (
+    <>
+      <circle cx="9" cy="8" r="3.5" />
+      <path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5" />
+      <path d="M16 8.5a3.2 3.2 0 1 1 3-4.4" />
+      <path d="M21.5 20c0-3-2.1-5.5-5-6.2" />
+    </>
+  ),
+  logout: (
+    <>
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+      <path d="M16 17l5-5-5-5" />
+      <path d="M21 12H9" />
+    </>
+  ),
+  edit: (
+    <>
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" />
+    </>
+  ),
+  trash: (
+    <>
+      <path d="M3 6h18" />
+      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+      <path d="M10 11v6M14 11v6" />
+    </>
+  ),
+  plus: <path d="M12 5v14M5 12h14" />,
 };
 
-type Props = { name: IconName; size?: number; strokeWidth?: number; className?: string };
+type Props = { name: IconName; size?: number; strokeWidth?: number; className?: string; style?: React.CSSProperties };
 
-export default function Icon({ name, size = 24, strokeWidth = 1.8, className }: Props) {
+export default function Icon({ name, size = 24, strokeWidth = 1.8, className, style }: Props) {
   return (
     <svg
       width={size}
@@ -80,6 +110,7 @@ export default function Icon({ name, size = 24, strokeWidth = 1.8, className }: 
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      style={style}
       aria-hidden="true"
       focusable="false"
     >

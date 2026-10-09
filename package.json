@@ -11,13 +11,20 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.2.2",
     "@contentful/rich-text-types": "^17.2.7",
+    "bcryptjs": "^3.0.3",
     "contentful": "^11.12.10",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.11.1",
     "next": "^15.5.27",
+    "nodemailer": "^10.0.16",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.10.0",
+    "@types/nodemailer": "^8.0.2",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "typescript": "^5.6.0"

@@ -67,7 +67,12 @@ export type IconName =
   | "close"
   | "arrowLeft"
   | "arrowRight"
-  | "chevronDown";
+  | "chevronDown"
+  | "users"
+  | "logout"
+  | "edit"
+  | "trash"
+  | "plus";
 
 export const trust: { icon: IconName; label: string }[] = [
   { icon: "clock", label: "Dedicated 1-hour sessions" },

@@ -59,9 +59,9 @@ export default function Header() {
           </nav>
 
           <div className="header__actions">
-            <a href="#" className="header__login">
+            <Link href="/login" className="header__login">
               Patient Login
-            </a>
+            </Link>
             <a href={site.bookingUrl} className="btn btn--gold">
               Schedule a Consultation
             </a>
@@ -109,9 +109,9 @@ export default function Header() {
                 </Link>
               )
             )}
-            <a href="#" onClick={() => setOpen(false)}>
+            <Link href="/login" onClick={() => setOpen(false)}>
               Patient Login
-            </a>
+            </Link>
             <a href={site.bookingUrl} className="btn btn--gold btn--block">
               Schedule a Consultation
             </a>
