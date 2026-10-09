@@ -2,14 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import connectDB from "@/lib/db";
 import User, { ROLES } from "@/models/User";
-import { getAuth } from "@/lib/auth";
-
-function requireAdmin(req: Request) {
-  const auth = getAuth(req);
-  if (!auth) return { error: NextResponse.json({ error: "No authorization token provided" }, { status: 401 }) };
-  if (auth.role !== ROLES.ADMIN) return { error: NextResponse.json({ error: "Admin access required" }, { status: 403 }) };
-  return { auth };
-}
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET(req: Request) {
   const { error } = requireAdmin(req);

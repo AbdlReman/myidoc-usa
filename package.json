@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed:admin": "node scripts/seed-admin.js",
+    "seed:email": "node scripts/seed-email-system.js"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.2.2",
     "@contentful/rich-text-types": "^17.2.7",
+    "@tinymce/tinymce-react": "^6.3.0",
     "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.11.0",
     "contentful": "^11.12.10",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.11.1",
@@ -27,6 +31,7 @@
     "@types/nodemailer": "^8.0.2",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "tinymce": "^8.9.3",
     "typescript": "^5.6.0"
   }
 }

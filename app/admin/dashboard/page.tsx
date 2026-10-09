@@ -2,10 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import Icon from "@/components/Icon";
-import Logo from "@/components/Logo";
-import { clearAuth, getAuth, ROLE_LABELS, type StoredAuth } from "@/lib/authClient";
+import AdminShell from "@/components/admin/AdminShell";
+import { clearAuth, ROLE_LABELS, useRequireAdmin } from "@/lib/authClient";
 
 type DashUser = {
   _id: string;
@@ -28,7 +27,7 @@ const avatarColor: Record<number, string> = { 1: "var(--primary)", 2: "#2196f3",
 
 export default function AdminDashboardPage() {
   const router = useRouter();
-  const [auth, setAuth] = useState<StoredAuth | null>(null);
+  const auth = useRequireAdmin();
   const [users, setUsers] = useState<DashUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -44,13 +43,8 @@ export default function AdminDashboardPage() {
   }, []);
 
   useEffect(() => {
-    const stored = getAuth();
-    if (!stored || stored.role !== 1) {
-      router.replace("/login");
-      return;
-    }
-    setAuth(stored);
-    loadUsers(stored.token)
+    if (!auth) return;
+    loadUsers(auth.token)
       .then(setUsers)
       .catch(() => {
         setError("Your session has expired. Redirecting to sign in…");
@@ -58,12 +52,7 @@ export default function AdminDashboardPage() {
         setTimeout(() => router.replace("/login"), 1500);
       })
       .finally(() => setLoading(false));
-  }, [router, loadUsers]);
-
-  function handleLogout() {
-    clearAuth();
-    router.push("/login");
-  }
+  }, [auth, router, loadUsers]);
 
   function openCreateModal() {
     setForm(EMPTY_FORM);
@@ -139,27 +128,11 @@ export default function AdminDashboardPage() {
   };
 
   return (
-    <div className="dash">
-      <aside className="dash__sidebar">
-        <div className="dash__brand">
-          <Logo />
-        </div>
-        <nav className="dash__nav">
-          <Link href="/admin/dashboard" className="dash__nav-item is-active">
-            <Icon name="users" size={20} />
-            Users
-          </Link>
-        </nav>
-        <button className="dash__logout" onClick={handleLogout}>
-          <Icon name="logout" size={16} style={{ marginRight: 8, verticalAlign: "-3px" }} />
-          Log out
-        </button>
-      </aside>
-
-      <div className="dash__main">
+    <AdminShell active="users">
+      <>
         <div className="dash__header">
           <div>
-            <h1>Users</h1>
+            <h1>Admin Users</h1>
             <p className="muted" style={{ margin: 0 }}>
               Signed in as {auth.name} ({ROLE_LABELS[auth.role]})
             </p>
@@ -247,7 +220,6 @@ export default function AdminDashboardPage() {
             </div>
           )}
         </div>
-      </div>
 
       {modalOpen && (
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
@@ -316,6 +288,7 @@ export default function AdminDashboardPage() {
           </div>
         </div>
       )}
-    </div>
+      </>
+    </AdminShell>
   );
 }

@@ -94,6 +94,65 @@ const paths: Record<IconName, React.ReactNode> = {
     </>
   ),
   plus: <path d="M12 5v14M5 12h14" />,
+  dashboard: (
+    <>
+      <rect x="3" y="3" width="8" height="8" rx="1.5" />
+      <rect x="13" y="3" width="8" height="5" rx="1.5" />
+      <rect x="13" y="12" width="8" height="9" rx="1.5" />
+      <rect x="3" y="15" width="8" height="6" rx="1.5" />
+    </>
+  ),
+  template: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 9h18M8 4v5" />
+    </>
+  ),
+  flow: (
+    <>
+      <circle cx="6" cy="6" r="3" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="12" r="3" />
+      <path d="M8.5 7.5L15.5 10.5M8.5 16.5L15.5 13.5" />
+    </>
+  ),
+  log: (
+    <>
+      <path d="M4 4h16v16H4z" />
+      <path d="M8 9h8M8 13h8M8 17h4" />
+    </>
+  ),
+  settings: (
+    <>
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5" />
+    </>
+  ),
+  chart: (
+    <>
+      <path d="M4 20V10M11 20V4M18 20v-7" />
+      <path d="M2 20h20" />
+    </>
+  ),
+  drag: (
+    <>
+      <circle cx="8" cy="6" r="1.2" />
+      <circle cx="16" cy="6" r="1.2" />
+      <circle cx="8" cy="12" r="1.2" />
+      <circle cx="16" cy="12" r="1.2" />
+      <circle cx="8" cy="18" r="1.2" />
+      <circle cx="16" cy="18" r="1.2" />
+    </>
+  ),
+  download: (
+    <>
+      <path d="M12 3v12M7 10l5 5 5-5" />
+      <path d="M4 20h16" />
+    </>
+  ),
+  send: <path d="M22 2L11 13M22 2l-7 20-4-9-9-4z" />,
+  check: <path d="M5 12l5 5L20 7" />,
+  x: <path d="M6 6l12 12M18 6L6 18" />,
 };
 
 type Props = { name: IconName; size?: number; strokeWidth?: number; className?: string; style?: React.CSSProperties };

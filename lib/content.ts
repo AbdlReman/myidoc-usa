@@ -72,7 +72,18 @@ export type IconName =
   | "logout"
   | "edit"
   | "trash"
-  | "plus";
+  | "plus"
+  | "dashboard"
+  | "template"
+  | "flow"
+  | "log"
+  | "settings"
+  | "chart"
+  | "drag"
+  | "download"
+  | "send"
+  | "check"
+  | "x";
 
 export const trust: { icon: IconName; label: string }[] = [
   { icon: "clock", label: "Dedicated 1-hour sessions" },

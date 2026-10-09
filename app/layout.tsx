@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
+import SubscribePopup from "@/components/SubscribePopup";
 import "./globals.css";
 
 const heading = Plus_Jakarta_Sans({
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         {children}
+        <SubscribePopup />
       </body>
     </html>
   );
