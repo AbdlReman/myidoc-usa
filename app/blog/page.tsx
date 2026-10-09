@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "News and insights on cancer prevention, oncology and telemedicine from the MYiDocUSA team.",
 };
 
-const TITLE_LIMIT = 53;
+const TITLE_LIMIT = 49;
 
 function truncateTitle(title: string) {
   return title.length > TITLE_LIMIT ? `${title.slice(0, TITLE_LIMIT)}...` : title;
