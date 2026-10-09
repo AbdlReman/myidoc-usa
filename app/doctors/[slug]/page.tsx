@@ -49,17 +49,17 @@ export default async function DoctorDetailPage({ params }: Props) {
         />
         <section className="section">
           <div className="container">
-            <article className="doctor">
-              <Photo
-                src={doctor.image ?? "/images/doctor-raza-naqvi.png"}
-                alt={doctor.name}
-                placeholder="[Doctor headshot]"
-                className="doctor__photo"
-                fit="contain"
-                sizes="(max-width: 900px) 100vw, 400px"
-                priority
-              />
-              <div className="doctor__body">
+            <article className="doctor doctor--detail">
+              <div className="doctor__aside">
+                <Photo
+                  src={doctor.image ?? "/images/doctor-raza-naqvi.png"}
+                  alt={doctor.name}
+                  placeholder="[Doctor headshot]"
+                  className="doctor__photo"
+                  fit="contain"
+                  sizes="(max-width: 900px) 100vw, 360px"
+                  priority
+                />
                 {doctor.specialization && <div className="doctor__spec">{doctor.specialization}</div>}
                 {doctor.doctorStates.length > 0 && (
                   <ul className="tags">
@@ -87,20 +87,17 @@ export default async function DoctorDetailPage({ params }: Props) {
                   </div>
                 </div>
               </div>
+
+              {doctor.generalInfo && (
+                <div className="doctor__body post__content">{documentToReactComponents(doctor.generalInfo)}</div>
+              )}
             </article>
+
+            {doctor.additionalDetail && (
+              <div className="doctor__additional post__content">{documentToReactComponents(doctor.additionalDetail)}</div>
+            )}
           </div>
         </section>
-
-        {(doctor.generalInfo || doctor.additionalDetail) && (
-          <section className="section section--tint">
-            <div className="container post">
-              {doctor.generalInfo && <div className="post__content">{documentToReactComponents(doctor.generalInfo)}</div>}
-              {doctor.additionalDetail && (
-                <div className="post__content">{documentToReactComponents(doctor.additionalDetail)}</div>
-              )}
-            </div>
-          </section>
-        )}
       </main>
       <Footer />
     </>

@@ -283,6 +283,15 @@ address { font-style: normal; }
 .doctor__bio p:last-child { margin-bottom: 0; }
 .doctor__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
 
+/* Doctor detail page: photo + quick facts stacked in a left aside, bio on the right */
+.doctor--detail .doctor__aside { flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px; padding: 32px; }
+.doctor--detail .doctor__photo { flex: none; aspect-ratio: 4 / 5; min-height: 0; border-radius: 16px; }
+.doctor--detail .doctor__body { border-top: 1px solid var(--border); }
+@media (min-width: 769px) {
+  .doctor--detail .doctor__body { border-top: none; border-left: 1px solid var(--border); }
+}
+.doctor__additional { margin-top: 32px; background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 40px 48px; }
+
 /* Testimonials */
 .carousel-nav { display: flex; gap: 12px; }
 .round-btn {
