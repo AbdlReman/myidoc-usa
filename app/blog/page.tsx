@@ -34,7 +34,7 @@ export default async function BlogPage() {
                 {posts.map((post) => {
                   const { title, slug, thumbnail, coverImage, category } = post;
                   return (
-                    <article key={slug} className="article article--flat">
+                    <article key={slug} className="article">
                       <Link href={`/blog/${slug}`}>
                         <Photo
                           src={thumbnail ?? coverImage}
