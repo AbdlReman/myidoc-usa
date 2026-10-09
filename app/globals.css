@@ -163,8 +163,8 @@ address { font-style: normal; }
 }
 .hero__text { margin: 0 0 36px; font-size: 19px; line-height: 1.7; color: #e6ebf4; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 14px; }
-.hero__media { flex: 0 1 470px; min-width: 0; position: relative; }
-.hero__photo { aspect-ratio: 4 / 5; border-radius: 20px; background: #36454f; }
+.hero__media { flex: 0 1 470px; min-width: 0; position: relative; align-self: flex-end; margin-bottom: -96px; }
+.hero__photo { aspect-ratio: 4 / 5; border-radius: 20px 20px 0 0; background: #36454f; }
 .hero__badge {
   position: absolute; left: -28px; bottom: 36px; max-width: 300px;
   display: flex; align-items: center; gap: 14px; padding: 16px 20px;
@@ -397,7 +397,7 @@ address { font-style: normal; }
 @media (max-width: 900px) {
   .section { padding: 72px 0; }
   .hero__inner { padding-top: 56px; padding-bottom: 64px; gap: 40px; }
-  .hero__media { flex-basis: 100%; }
+  .hero__media { flex-basis: 100%; margin-bottom: -64px; }
   .hero__badge { left: 16px; bottom: 16px; }
   .doctor__body { padding: 32px 24px; }
   .carousel { grid-auto-columns: 88%; }
