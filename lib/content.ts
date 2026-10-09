@@ -43,7 +43,7 @@ export const hero = {
   eyebrow: "Welcome to MYiDOCUSA",
   title: "Your Online Platform for Cancer Coaching",
   text: "MYiDOCUSA offers one-on-one personalized coaching to help you navigate diagnosis, treatment, and survivorship with confidence — with direct access to a cancer coach and expert.",
-  badgeTitle: "Board-Certified",
+  badgeTitle: "US-Board-Certified",
   badgeText: "Oncology & Hematology",
   // Put your photo in /public/images and set the path, e.g. "/images/hero-doctor.jpg"
   image: "/images/doctor-raza-naqvi.png" as string | null,

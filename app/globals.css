@@ -164,7 +164,8 @@ address { font-style: normal; }
 .hero__text { margin: 0 0 36px; font-size: 19px; line-height: 1.7; color: #e6ebf4; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero__media { flex: 0 1 470px; min-width: 0; position: relative; align-self: flex-end; margin-bottom: -96px; }
-.hero__photo { aspect-ratio: 4 / 5; border-radius: 20px 20px 0 0; background: #36454f; }
+.hero__photo { aspect-ratio: 4 / 5; border-radius: 20px 20px 0 0; }
+.hero__photo.photo { background: transparent; }
 .hero__badge {
   position: absolute; left: -28px; bottom: 36px; max-width: 300px;
   display: flex; align-items: center; gap: 14px; padding: 16px 20px;
