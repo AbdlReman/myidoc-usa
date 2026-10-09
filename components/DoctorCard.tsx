@@ -13,14 +13,14 @@ export default function DoctorCard({ doctor }: { doctor: Doctor }) {
 
   return (
     <article className="doctor">
-      <Link href={`/doctors/${doctor.slug}`}>
+      <Link href={`/doctors/${doctor.slug}`} className="doctor__photo-link">
         <Photo
           src={doctor.image ?? "/images/doctor-raza-naqvi.png"}
           alt={doctor.name}
           placeholder="[Doctor headshot]"
           className="doctor__photo"
-          fit="contain"
-          sizes="(max-width: 900px) 100vw, 400px"
+          fit="cover"
+          sizes="(max-width: 900px) 100vw, 300px"
         />
       </Link>
       <div className="doctor__body">

@@ -56,7 +56,7 @@ export default async function DoctorDetailPage({ params }: Props) {
                   alt={doctor.name}
                   placeholder="[Doctor headshot]"
                   className="doctor__photo"
-                  fit="contain"
+                  fit="cover"
                   sizes="(max-width: 900px) 100vw, 360px"
                   priority
                 />
