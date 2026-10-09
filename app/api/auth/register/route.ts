@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import connectDB from "@/lib/db";
 import User, { ROLES } from "@/models/User";
-import { signToken } from "@/lib/auth";
 
 // Public self-registration. Always creates a patient account — admins/doctors
 // are created separately from the admin dashboard, never from client input here.
@@ -31,7 +30,5 @@ export async function POST(req: Request) {
     role: ROLES.PATIENT,
   });
 
-  const token = signToken({ userId: user._id.toString(), role: user.role });
-
-  return NextResponse.json({ token, role: user.role, name: user.name, email: user.email }, { status: 201 });
+  return NextResponse.json({ name: user.name, email: user.email }, { status: 201 });
 }

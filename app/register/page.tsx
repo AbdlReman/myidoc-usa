@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { saveAuth } from "@/lib/authClient";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -37,8 +36,7 @@ export default function RegisterPage() {
         setError(data.error || "Something went wrong. Please try again.");
         return;
       }
-      saveAuth({ token: data.token, role: data.role, name: data.name, email: data.email });
-      router.push("/");
+      router.push("/login?registered=1");
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
