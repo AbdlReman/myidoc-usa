@@ -435,6 +435,7 @@ address { font-style: normal; }
 .auth-links { display: flex; justify-content: space-between; margin-top: 18px; font-size: 14px; }
 .auth-links a { color: var(--primary); font-weight: 600; text-decoration: none; }
 .auth-links a:hover { text-decoration: underline; }
+.auth-links--center { justify-content: center; gap: 6px; }
 
 /* ===== Admin dashboard ===== */
 .dash { display: flex; min-height: 100vh; background: var(--bg-tint); }
