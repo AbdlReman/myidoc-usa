@@ -98,6 +98,9 @@ export default function AdminTemplatesPage() {
                     </td>
                     <td>
                       <div className="dash__row-actions">
+                        <Link href={`/admin/templates/${t._id}`} className="dash__icon-btn" aria-label="Edit">
+                          <Icon name="edit" size={15} />
+                        </Link>
                         <button className="dash__icon-btn" aria-label="Duplicate" onClick={() => duplicate(t._id)}>
                           <Icon name="template" size={15} />
                         </button>
