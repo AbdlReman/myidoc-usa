@@ -1,7 +1,7 @@
 /* One-off script: registers a cron-job.org job that hits /api/cron/run every
    5 minutes, using the cron-job.org REST API (https://docs.cron-job.org/rest-api.html).
    Reads from .env.local:
-     CORNJOB_API_KEY       - your cron-job.org API key (Settings -> API in their dashboard)
+     CRONJOB_API_KEY       - your cron-job.org API key (Settings -> API in their dashboard)
      NEXT_PUBLIC_BASE_URL  - your PUBLIC production URL (not localhost!) e.g. https://www.myidocusa.com
      CRON_SECRET           - the secret /api/cron/run expects
 
@@ -18,13 +18,13 @@ for (const line of fs.readFileSync(envPath, "utf8").split("\n")) {
   if (match) process.env[match[1].trim()] ??= match[2].trim();
 }
 
-const API_KEY = process.env.CORNJOB_API_KEY;
+const API_KEY = process.env.CRONJOB_API_KEY;
 const CRON_SECRET = process.env.CRON_SECRET;
 const baseUrl = (process.argv[2] || process.env.NEXT_PUBLIC_BASE_URL || "").replace(/\/$/, "");
 
 async function main() {
   if (!API_KEY) {
-    console.error("CORNJOB_API_KEY is not set in .env.local. Get one from cron-job.org -> Settings -> API.");
+    console.error("CRONJOB_API_KEY is not set in .env.local. Get one from cron-job.org -> Settings -> API.");
     process.exit(1);
   }
   if (!CRON_SECRET) {

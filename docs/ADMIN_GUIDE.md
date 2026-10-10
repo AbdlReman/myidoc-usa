@@ -74,7 +74,7 @@ Gmail SMTP (used here via `nodemailer`) has no delivery/open/click webhooks the 
 Emails are sent by a scheduled job hitting `/api/cron/run` every 5 minutes. This runs on **cron-job.org** (an external scheduler) rather than Vercel Cron — Vercel's Hobby plan only allows cron jobs to run once per day, far too infrequent for a Day 2/5/9 drip sequence.
 
 Setup (once, after deploying to your real production URL):
-1. Create a free account at cron-job.org and generate an API key (Console → Settings → API). Put it in `.env.local` as `CORNJOB_API_KEY`.
+1. Create a free account at cron-job.org and generate an API key (Console → Settings → API). Put it in `.env.local` as `CRONJOB_API_KEY`.
 2. Set `NEXT_PUBLIC_BASE_URL` to your real public domain (not `localhost`).
 3. Run `npm run setup:cron` (or `node scripts/setup-cronjob.js https://your-domain.com`). This registers a job at console.cron-job.org that calls `/api/cron/run` every 5 minutes with the `CRON_SECRET` as a Bearer token header.
 4. You can review/pause/edit the job any time at https://console.cron-job.org/jobs.
