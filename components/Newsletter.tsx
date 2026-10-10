@@ -13,6 +13,7 @@ export default function Newsletter() {
             source="homepage-newsletter"
             formClassName="newsletter__form"
             statusClassName="newsletter__status"
+            showNameField={false}
           />
         </div>
       </div>

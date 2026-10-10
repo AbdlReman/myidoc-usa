@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/db";
 import EmailTemplate from "@/models/EmailTemplate";
-import { getSettings } from "@/models/Settings";
 import { requireAdmin } from "@/lib/auth";
 import { renderMergeTags } from "@/lib/mergeTags";
 import { sendMail } from "@/lib/mailer";
+import { site } from "@/lib/content";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -22,12 +22,11 @@ export async function POST(req: Request, { params }: Params) {
   const template = await EmailTemplate.findById(id);
   if (!template) return NextResponse.json({ error: "Template not found" }, { status: 404 });
 
-  const settings = await getSettings();
   const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000").replace(/\/$/, "");
   const mergeData = {
     first_name: "there",
     email: to,
-    booking_link: settings.bookingLink,
+    booking_link: site.bookingUrl,
     unsubscribe_link: `${baseUrl}/unsubscribe?token=test`,
     site_url: baseUrl,
   };

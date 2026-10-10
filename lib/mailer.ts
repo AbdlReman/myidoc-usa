@@ -1,5 +1,8 @@
 import nodemailer from "nodemailer";
-import { getSettings } from "@/models/Settings";
+
+// From name is fixed in code; from/reply-to addresses come from env — no DB-editable settings.
+const FROM_NAME = "MyIDocUSA";
+const REPLY_TO = process.env.EMAIL_TO || process.env.EMAIL_USER || "";
 
 let transporter: ReturnType<typeof nodemailer.createTransport> | null = null;
 
@@ -40,9 +43,10 @@ export type SendMailInput = {
 export type SendMailResult = { messageId: string };
 
 /**
- * Generic sender for subscriber-flow emails. Pulls From/Reply-To from the
- * editable Settings doc, and attaches List-Unsubscribe headers (CAN-SPAM /
- * RFC 8058 one-click) when an unsubscribe URL is given.
+ * Generic sender for subscriber-flow emails. From name is fixed ("MyIDocUSA"),
+ * from/reply-to addresses come from env vars (EMAIL_USER/EMAIL_TO). Attaches
+ * List-Unsubscribe headers (CAN-SPAM / RFC 8058 one-click) when an unsubscribe
+ * URL is given.
  */
 export async function sendMail({ to, subject, html, text, unsubscribeUrl }: SendMailInput): Promise<SendMailResult> {
   const t = getTransporter();
@@ -50,16 +54,15 @@ export async function sendMail({ to, subject, html, text, unsubscribeUrl }: Send
     throw new Error("EMAIL_USER/EMAIL_PASS not configured — cannot send email.");
   }
 
-  const settings = await getSettings();
   const headers: Record<string, string> = {};
   if (unsubscribeUrl) {
-    headers["List-Unsubscribe"] = `<mailto:${settings.replyTo}>, <${unsubscribeUrl}>`;
+    headers["List-Unsubscribe"] = `<mailto:${REPLY_TO}>, <${unsubscribeUrl}>`;
     headers["List-Unsubscribe-Post"] = "List-Unsubscribe=One-Click";
   }
 
   const info = await t.sendMail({
-    from: `"${settings.fromName}" <${process.env.EMAIL_USER}>`,
-    replyTo: settings.replyTo || undefined,
+    from: `"${FROM_NAME}" <${process.env.EMAIL_USER}>`,
+    replyTo: REPLY_TO || undefined,
     to,
     subject,
     html,

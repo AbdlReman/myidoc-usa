@@ -6,7 +6,6 @@ export const LEAD_STATUS = {
   UNSUBSCRIBED: "unsubscribed",
   BOUNCED: "bounced",
   COMPLETED: "completed",
-  PENDING_CONFIRMATION: "pending_confirmation",
 } as const;
 
 export type LeadStatus = (typeof LEAD_STATUS)[keyof typeof LEAD_STATUS];

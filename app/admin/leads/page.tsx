@@ -25,7 +25,6 @@ const STATUS_BADGE: Record<string, string> = {
   unsubscribed: "status-badge status-badge--unsubscribed",
   bounced: "status-badge status-badge--bounced",
   completed: "status-badge status-badge--completed",
-  pending_confirmation: "status-badge status-badge--pending",
 };
 
 export default function AdminLeadsPage() {
@@ -173,7 +172,6 @@ export default function AdminLeadsPage() {
           <option value="unsubscribed">Unsubscribed</option>
           <option value="bounced">Bounced</option>
           <option value="completed">Completed</option>
-          <option value="pending_confirmation">Pending confirmation</option>
         </select>
         <select className="form-input form-select" value={sort} onChange={(e) => setSort(e.target.value)}>
           <option value="createdAt:desc">Newest first</option>

@@ -7,7 +7,7 @@ import Icon from "@/components/Icon";
 
 const DISMISSED_KEY = "myidocusa_popup_dismissed";
 const SHOW_DELAY_MS = 8000;
-const EXCLUDED_PREFIXES = ["/admin", "/thank-you", "/unsubscribe", "/login", "/register"];
+const EXCLUDED_PREFIXES = ["/admin", "/unsubscribe", "/login", "/register"];
 
 export default function SubscribePopup() {
   const pathname = usePathname();

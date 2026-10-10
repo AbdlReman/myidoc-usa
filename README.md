@@ -34,10 +34,12 @@ Requires Node.js 18.18+ (20 or 22 recommended).
 `components/Logo.tsx` contains a placeholder mark. Replace it with your real logo
 (e.g. `<Image src="/logo.svg" alt="MYiDocUSA" width={180} height={40} />`).
 
-## Newsletter
+## Newsletter / subscriber emails
 
-`components/Newsletter.tsx` validates the email and shows a thank-you message.
-Connect it to your provider (Mailchimp, ConvertKit, etc.) at the `TODO` line.
+`components/Newsletter.tsx` and `components/SubscribePopup.tsx` both post to `/api/subscribe`,
+which saves a `Lead`, sends a welcome email immediately, and schedules the Day 2/5/9 follow-ups.
+The success message appears inline under the Subscribe button — see `docs/ADMIN_GUIDE.md` for
+how to edit templates/flow timing from `/admin`.
 
 ## Performance
 

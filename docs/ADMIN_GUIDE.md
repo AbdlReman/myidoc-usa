@@ -45,15 +45,17 @@ Go to **Leads**.
 
 Go to **Logs** to see every scheduled/sent/failed email. Failed emails show a **Retry** button — it resets the attempt counter and resends on the next check.
 
-## Settings
+## From name, from email, booking link, footer address
 
-Go to **Settings** to change:
-- From name / From email / Reply-to
-- Booking link (defaults to the Jane App link)
-- Footer mailing address (required by CAN-SPAM, shown on every email)
-- Double opt-in toggle (require subscribers to confirm their email before entering the welcome series)
+These are fixed in code/environment variables rather than editable in the admin panel:
 
-**Note on From email**: sending goes through Gmail SMTP (`EMAIL_USER` in the server's environment variables). Gmail will override the "From" address unless the email you set here matches that account or is a verified alias of it — ask your developer if you want to change the sending account itself.
+- **From name** is hardcoded as "MyIDocUSA" in `lib/mailer.ts`.
+- **From email** / **Reply-to** come from the `EMAIL_USER` / `EMAIL_TO` environment variables.
+- **Booking link** / **footer mailing address** come from `lib/content.ts` (`site.bookingUrl`, `site.address`).
+
+Ask your developer to update those files or env vars if any of these need to change.
+
+**Note on From email**: sending goes through Gmail SMTP (`EMAIL_USER`). Gmail will override the "From" address unless it matches that account or is a verified alias of it.
 
 ## Deliverability notes (for your developer/host)
 
@@ -69,4 +71,12 @@ Gmail SMTP (used here via `nodemailer`) has no delivery/open/click webhooks the 
 
 ## Scheduled sending
 
-Emails are sent by a scheduled job (`/api/cron/run`, triggered every 5 minutes by Vercel Cron — see `vercel.json`). The immediate "Welcome" step fires right when someone subscribes, without waiting for that job.
+Emails are sent by a scheduled job hitting `/api/cron/run` every 5 minutes. This runs on **cron-job.org** (an external scheduler) rather than Vercel Cron — Vercel's Hobby plan only allows cron jobs to run once per day, far too infrequent for a Day 2/5/9 drip sequence.
+
+Setup (once, after deploying to your real production URL):
+1. Create a free account at cron-job.org and generate an API key (Console → Settings → API). Put it in `.env.local` as `CORNJOB_API_KEY`.
+2. Set `NEXT_PUBLIC_BASE_URL` to your real public domain (not `localhost`).
+3. Run `npm run setup:cron` (or `node scripts/setup-cronjob.js https://your-domain.com`). This registers a job at console.cron-job.org that calls `/api/cron/run` every 5 minutes with the `CRON_SECRET` as a Bearer token header.
+4. You can review/pause/edit the job any time at https://console.cron-job.org/jobs.
+
+The immediate "Welcome" step always fires right when someone subscribes, without waiting for that job — the 5-minute job only handles the later Day 2/5/9 steps (and retries).

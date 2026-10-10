@@ -4,13 +4,14 @@ import EmailFlow from "@/models/EmailFlow";
 import FlowStep, { delayToMs, type DelayUnit } from "@/models/FlowStep";
 import EmailTemplate from "@/models/EmailTemplate";
 import ScheduledEmail, { SCHEDULED_EMAIL_STATUS } from "@/models/ScheduledEmail";
-import { getSettings } from "@/models/Settings";
 import { renderMergeTags } from "@/lib/mergeTags";
 import { injectTracking } from "@/lib/track";
 import { sendMail } from "@/lib/mailer";
+import { site } from "@/lib/content";
 
 const MAX_ATTEMPTS = 3;
 const RETRY_BACKOFF_MINUTES = 15;
+const FOOTER_ADDRESS = `MyIDocUSA, ${site.address.join(", ")}`;
 
 function baseUrl() {
   return (process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000").replace(/\/$/, "");
@@ -51,10 +52,9 @@ export async function enrollLeadInFlows(leadId: string, trigger = "on_subscribe"
 
 /** Builds the fully rendered, tracked HTML + merge-tag data for one scheduled email. */
 async function renderScheduledEmail(scheduled: InstanceType<typeof ScheduledEmail>) {
-  const [lead, template, settings] = await Promise.all([
+  const [lead, template] = await Promise.all([
     Lead.findById(scheduled.leadId),
     EmailTemplate.findById(scheduled.templateId),
-    getSettings(),
   ]);
   if (!lead || !template) return null;
 
@@ -63,7 +63,7 @@ async function renderScheduledEmail(scheduled: InstanceType<typeof ScheduledEmai
   const mergeData = {
     first_name: lead.firstName || "",
     email: lead.email,
-    booking_link: settings.bookingLink,
+    booking_link: site.bookingUrl,
     unsubscribe_link: unsubscribeUrl,
     site_url: url,
   };
@@ -75,7 +75,7 @@ async function renderScheduledEmail(scheduled: InstanceType<typeof ScheduledEmai
   // an admin's template copy forgets one — CAN-SPAM requires both on every send.
   html += `
     <div style="margin-top:32px;padding-top:20px;border-top:1px solid #e3e3e3;font-family:Arial,sans-serif;font-size:12px;color:#8a8a8a;text-align:center;">
-      <p style="margin:0 0 6px;">${settings.footerAddress || ""}</p>
+      <p style="margin:0 0 6px;">${FOOTER_ADDRESS}</p>
       <p style="margin:0;">
         <a href="${unsubscribeUrl}" style="color:#8a8a8a;text-decoration:underline;">Unsubscribe</a>
         from these emails at any time.

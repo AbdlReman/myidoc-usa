@@ -7,7 +7,7 @@ import Logo from "@/components/Logo";
 import { clearAuth } from "@/lib/authClient";
 import type { IconName } from "@/lib/content";
 
-export type AdminNavKey = "overview" | "leads" | "templates" | "flows" | "logs" | "settings" | "users";
+export type AdminNavKey = "overview" | "leads" | "templates" | "flows" | "logs" | "users";
 
 const NAV_ITEMS: { key: AdminNavKey; label: string; href: string; icon: IconName }[] = [
   { key: "overview", label: "Overview", href: "/admin", icon: "dashboard" },
@@ -15,7 +15,6 @@ const NAV_ITEMS: { key: AdminNavKey; label: string; href: string; icon: IconName
   { key: "templates", label: "Templates", href: "/admin/templates", icon: "template" },
   { key: "flows", label: "Flows", href: "/admin/flows", icon: "flow" },
   { key: "logs", label: "Logs", href: "/admin/logs", icon: "log" },
-  { key: "settings", label: "Settings", href: "/admin/settings", icon: "settings" },
   { key: "users", label: "Admin Users", href: "/admin/dashboard", icon: "users" },
 ];
 

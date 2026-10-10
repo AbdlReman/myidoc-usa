@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "seed:admin": "node scripts/seed-admin.js",
-    "seed:email": "node scripts/seed-email-system.js"
+    "seed:email": "node scripts/seed-email-system.js",
+    "setup:cron": "node scripts/setup-cronjob.js"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.2.2",

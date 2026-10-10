@@ -1,5 +1,5 @@
-/* One-off script: seeds the default Settings doc, the 4 welcome-series email
-   templates, and the "Subscriber Welcome Series" flow (steps at Day 0/2/5/9).
+/* One-off script: seeds the 4 welcome-series email templates and the
+   "Subscriber Welcome Series" flow (steps at Day 0/2/5/9).
    Idempotent — safe to re-run; upserts by name instead of creating duplicates.
      node scripts/seed-email-system.js
    Reads MONGODB_URI from .env.local, same pattern as scripts/seed-admin.js. */
@@ -170,31 +170,9 @@ async function main() {
     },
     { timestamps: true }
   );
-  const SettingsSchema = new mongoose.Schema(
-    { fromName: String, fromEmail: String, replyTo: String, bookingLink: String, footerAddress: String, doubleOptIn: Boolean },
-    { timestamps: true }
-  );
-
   const EmailTemplate = mongoose.models.EmailTemplate || mongoose.model("EmailTemplate", EmailTemplateSchema);
   const EmailFlow = mongoose.models.EmailFlow || mongoose.model("EmailFlow", EmailFlowSchema);
   const FlowStep = mongoose.models.FlowStep || mongoose.model("FlowStep", FlowStepSchema);
-  const Settings = mongoose.models.Settings || mongoose.model("Settings", SettingsSchema);
-
-  // Settings singleton
-  const existingSettings = await Settings.findOne();
-  if (!existingSettings) {
-    await Settings.create({
-      fromName: "MyIDocUSA",
-      fromEmail: "admin@myidocusa.com",
-      replyTo: "admin@myidocusa.com",
-      bookingLink: "https://myidocusa.janeapp.com/",
-      footerAddress: "MYiDocUSA, 501 S Cherry St, Suite 1100, Denver, CO 80246",
-      doubleOptIn: false,
-    });
-    console.log("Created default Settings.");
-  } else {
-    console.log("Settings already exist — left unchanged.");
-  }
 
   // Templates (upsert by name)
   const templateIds = [];

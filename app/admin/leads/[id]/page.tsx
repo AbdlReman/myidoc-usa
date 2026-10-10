@@ -132,7 +132,6 @@ export default function AdminLeadDetailPage() {
                   <option value="unsubscribed">Unsubscribed</option>
                   <option value="bounced">Bounced</option>
                   <option value="completed">Completed</option>
-                  <option value="pending_confirmation">Pending confirmation</option>
                 </select>
               </div>
               <div>

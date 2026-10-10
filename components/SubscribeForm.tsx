@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
-type Status = "idle" | "loading" | "done" | "already" | "pending" | "error";
+type Status = "idle" | "loading" | "done" | "already" | "error";
 
 type Props = {
   source?: string;
   formClassName?: string;
   statusClassName?: string;
+  showNameField?: boolean;
   onSuccess?: () => void;
 };
 
@@ -15,10 +16,28 @@ export default function SubscribeForm({
   source,
   formClassName = "subscribe-form",
   statusClassName = "subscribe-form__status",
+  showNameField = true,
   onSuccess,
 }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const clearTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (clearTimer.current) clearTimeout(clearTimer.current);
+    };
+  }, []);
+
+  function showMessage(nextStatus: Status, text: string) {
+    setStatus(nextStatus);
+    setMessage(text);
+    if (clearTimer.current) clearTimeout(clearTimer.current);
+    clearTimer.current = setTimeout(() => {
+      setMessage("");
+      setStatus("idle");
+    }, 3000);
+  }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,8 +48,7 @@ export default function SubscribeForm({
     const website = (data.get("website") as string) ?? "";
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setStatus("error");
-      setMessage("Please enter a valid email address.");
+      showMessage("error", "Please enter a valid email address.");
       return;
     }
 
@@ -55,39 +73,32 @@ export default function SubscribeForm({
       const result = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        setStatus("error");
-        setMessage(result.error || "Something went wrong. Please try again.");
+        showMessage("error", result.error || "Something went wrong. Please try again.");
         return;
       }
       if (result.alreadySubscribed) {
-        setStatus("already");
-        setMessage("You're already subscribed — thank you!");
-        return;
-      }
-      if (result.pendingConfirmation) {
-        setStatus("pending");
-        setMessage("Almost there — check your inbox to confirm your subscription.");
-        form.reset();
+        showMessage("already", "You're already subscribed — thank you!");
         return;
       }
 
-      setStatus("done");
-      setMessage("Thank you for subscribing!");
+      showMessage("done", "Thanks for subscribing!");
       form.reset();
       onSuccess?.();
-      window.location.href = "/thank-you";
     } catch {
-      setStatus("error");
-      setMessage("Something went wrong. Please try again.");
+      showMessage("error", "Something went wrong. Please try again.");
     }
   }
 
   return (
     <form className={formClassName} onSubmit={onSubmit} noValidate>
-      <label htmlFor="sf-name" className="sr-only">
-        First name
-      </label>
-      <input id="sf-name" name="firstName" type="text" placeholder="First name" autoComplete="given-name" />
+      {showNameField && (
+        <>
+          <label htmlFor="sf-name" className="sr-only">
+            First name
+          </label>
+          <input id="sf-name" name="firstName" type="text" placeholder="First name" autoComplete="given-name" />
+        </>
+      )}
 
       <label htmlFor="sf-email" className="sr-only">
         Email address
