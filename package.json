@@ -9,7 +9,8 @@
     "lint": "next lint",
     "seed:admin": "node scripts/seed-admin.js",
     "seed:email": "node scripts/seed-email-system.js",
-    "setup:cron": "node scripts/setup-cronjob.js"
+    "setup:cron": "node scripts/setup-cronjob.js",
+    "push:template": "node scripts/push-template.js"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.2.2",
